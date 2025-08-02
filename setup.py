@@ -5,15 +5,15 @@ from os import path, walk
 import sys
 from setuptools import setup, find_packages
 
-NAME = "Orange3 Example Add-on"
+NAME = "Orange3 Statsmodels Add-on"
 
-VERSION = "0.0.3"
+VERSION = "0.0.1"
 
-AUTHOR = 'Bioinformatics Laboratory, FRI UL'
-AUTHOR_EMAIL = 'contact@orange.biolab.si'
+AUTHOR = 'Alexander Chichigin'
+AUTHOR_EMAIL = 'sad.ronin@gmail.com'
 
 URL = 'http://orange.biolab.si/download'
-DESCRIPTION = "Add-on containing example widgets"
+DESCRIPTION = "Add-on containing widgets providing access to Statsmodels library"
 LONG_DESCRIPTION = open(path.join(path.dirname(__file__), 'README.pypi'),
                         'r', encoding='utf-8').read()
 
@@ -28,8 +28,7 @@ KEYWORDS = (
 PACKAGES = find_packages()
 
 PACKAGE_DATA = {
-    'orangecontrib.example': ['tutorials/*.ows'],
-    'orangecontrib.example.widgets': ['icons/*'],
+    'orangecontrib.statsmodels.widgets': ['icons/*'],
 }
 
 DATA_FILES = [
@@ -38,32 +37,33 @@ DATA_FILES = [
 
 INSTALL_REQUIRES = [
     'Orange3',
+    'statsmodels',
 ]
 
 ENTRY_POINTS = {
     # Entry points that marks this package as an orange add-on. If set, addon will
     # be shown in the add-ons manager even if not published on PyPi.
     'orange3.addon': (
-        'example = orangecontrib.example',
+        'statsmodels = orangecontrib.statsmodels',
     ),
     # Entry point used to specify packages containing tutorials accessible
     # from welcome screen. Tutorials are saved Orange Workflows (.ows files).
-    'orange.widgets.tutorials': (
-        # Syntax: any_text = path.to.package.containing.tutorials
-        'exampletutorials = orangecontrib.example.tutorials',
-    ),
+    # 'orange.widgets.tutorials': (
+    #     # Syntax: any_text = path.to.package.containing.tutorials
+    #     'exampletutorials = orangecontrib.example.tutorials',
+    # ),
 
     # Entry point used to specify packages containing widgets.
     'orange.widgets': (
         # Syntax: category name = path.to.package.containing.widgets
         # Widget category specification can be seen in
         #    orangecontrib/example/widgets/__init__.py
-        'Examples = orangecontrib.example.widgets',
+        'Statsmodels = orangecontrib.statsmodels.widgets',
     ),
 
     # Register widget help
     "orange.canvas.help": (
-        'html-index = orangecontrib.example.widgets:WIDGET_HELP_PATH',)
+        'html-index = orangecontrib.statsmodels.widgets:WIDGET_HELP_PATH',)
 }
 
 NAMESPACE_PACKAGES = ["orangecontrib"]
