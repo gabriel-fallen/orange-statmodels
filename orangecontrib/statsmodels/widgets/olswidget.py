@@ -12,7 +12,7 @@ class OLSWidget(OWWidget):
     # and not shown in the menu.
     name = "Ordinary Least Squares"
     description = "Fits a model specified via a formula to the data provided."
-    icon = "icons/mywidget.svg"
+    icon = "icons/UnivariateRegression.svg"
     priority = 100  # where in the widget order it will appear
     keywords = ["widget", "data"]
     want_main_area = False
