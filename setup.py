@@ -29,6 +29,7 @@ PACKAGES = find_packages()
 
 PACKAGE_DATA = {
     'orangecontrib.statsmodels.widgets': ['icons/*'],
+    # TODO: OWS file(s) with example workflow(s)
 }
 
 DATA_FILES = [

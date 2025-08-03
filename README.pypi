@@ -1,11 +1,10 @@
-Orange3 Explain
+Orange3 Statsmodels
 ===============
 
-Short description for the PyPI.
-See [documentation](http://orange3-imageanalytics.readthedocs.org/).
+This is a [Statsmodels](https://www.statsmodels.org/stable/) add-on for [Orange3](http://orange.biolab.si).
 
 Features
 --------
-#### List of key features
-* Feature 1
+
+* Ordinary Least Squares
 * Feature 2

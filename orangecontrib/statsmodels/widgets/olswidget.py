@@ -24,6 +24,7 @@ class OLSWidget(OWWidget):
         # specify the name of the input and the type
         data = Input("Data", Table)
 
+    # TODO: output coefficients of the fitted model (like built-in widgets)
     # class Outputs:
         # if there are two or more outputs, default=True marks the default output
         # data = Output("Data", Table, default=True)
