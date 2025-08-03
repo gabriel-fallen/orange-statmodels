@@ -62,13 +62,15 @@ class OLSWidget(OWWidget):
         try:
             y, X = dmatrices(self.formula, data=table_to_frame(self.data), return_type='dataframe')
             res = sm.OLS(y, X).fit()
-            self.info_box.setText(str(res.summary()))
+            self.last_summary = str(res.summary())
+            self.info_box.setText(self.last_summary)
         except Exception as ex:
             self.info_box.setText(str(ex))
 
     def send_report(self):
         # self.report_plot() includes visualizations in the report
         self.report_caption(self.formula)
+        self.report_raw("<pre>\n{}\n</pre>".format(self.last_summary or ""))
 
 
 if __name__ == "__main__":
