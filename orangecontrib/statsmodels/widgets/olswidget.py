@@ -30,7 +30,8 @@ class OLSWidget(OWWidget):
 
     # same class can be initiated for Error and Information messages
     class Warning(OWWidget.Warning):
-        warning = Msg("My warning!")
+        no_data = Msg("No input data")
+        no_formula = Msg("No formula is provided")
 
     def __init__(self):
         super().__init__()
@@ -53,11 +54,16 @@ class OLSWidget(OWWidget):
         self.try_fit()
 
     def try_fit(self):
+        self.Warning.no_data(shown=not self.data)
+        self.Warning.no_formula(shown=not self.formula)
         if not self.data or not self.formula: return
 
-        y, X = dmatrices(self.formula, data=self.data, return_type='dataframe')
-        res = sm.OLS(y, X).fit()
-        self.info_box.setText(res.summary())
+        try:
+            y, X = dmatrices(self.formula, data=self.data, return_type='dataframe')
+            res = sm.OLS(y, X).fit()
+            self.info_box.setText(res.summary())
+        except Exception as ex:
+            self.info_box.setText(str(ex))
 
     def send_report(self):
         # self.report_plot() includes visualizations in the report
