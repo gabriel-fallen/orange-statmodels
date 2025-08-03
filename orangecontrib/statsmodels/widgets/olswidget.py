@@ -1,4 +1,4 @@
-from Orange.data import Table
+from Orange.data import Table, table_to_frame
 from Orange.widgets import gui
 from Orange.widgets.settings import Setting
 from Orange.widgets.widget import OWWidget, Input, Output, Msg
@@ -35,7 +35,7 @@ class OLSWidget(OWWidget):
 
     def __init__(self):
         super().__init__()
-        self.data = None
+        self.data : Table | None = None
 
         self.formula_box = gui.lineEdit(
             self.controlArea, self, "formula", box="Formula", callback=self.commit)
@@ -59,9 +59,9 @@ class OLSWidget(OWWidget):
         if not self.data or not self.formula: return
 
         try:
-            y, X = dmatrices(self.formula, data=self.data, return_type='dataframe')
+            y, X = dmatrices(self.formula, data=table_to_frame(self.data), return_type='dataframe')
             res = sm.OLS(y, X).fit()
-            self.info_box.setText(res.summary())
+            self.info_box.setText(str(res.summary()))
         except Exception as ex:
             self.info_box.setText(str(ex))
 
